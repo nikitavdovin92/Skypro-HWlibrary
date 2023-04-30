@@ -14,12 +14,6 @@ public class EmployeeService2 {
     private static final int SIZE = 5;
     private Employee[] staff = new Employee[SIZE];
 
-    private static ValidatorService validatorService;
-
-    public EmployeeService2(ValidatorService validatorService) {
-        this.validatorService = validatorService;
-    }
-
     EmployeeService2() {
         staff[0] = new Employee("Василий", "Васильев", 50000, 5);
         staff[1] = new Employee("Виктор", "Генкин", 51000, 5);

@@ -15,13 +15,21 @@ public abstract class EmployeeServiceImpl implements EmployeeService {
 
     private final Map<String, Employee> employees;
 
-    public EmployeeServiceImpl () { this.employees = new HashMap<>(); }
+    public EmployeeServiceImpl (ValidatorService validatorService) {
+        this.validatorService = validatorService;
+        this.employees = new HashMap<>(); }
+
+    private final ValidatorService validatorService;
+
+    public EmployeeServiceImpl(Map<String, Employee> employees, ValidatorService validatorService) {
+        this.employees = employees;
+        this.validatorService = validatorService;
+    }
 
     @Override
     public Employee add(String firstName, String lastName, double salary, int department) {
-        Employee employee = new Employee(
-                ValidatorService.validateFirstname(firstName),
-                ValidatorService.validateLastname(lastName),
+        Employee employee = new Employee(firstName,
+                lastName,
                 salary,
                 department);
         if(employees.containsKey(employee.fullName())) {
